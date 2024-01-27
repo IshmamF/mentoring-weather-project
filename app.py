@@ -12,7 +12,9 @@ geolocator = GoogleV3(api_key=GOOGLE_API)
 
 st.title("Weather Image")
 
-user_input = st.text_input('Provide Location Below')
+user_input = st.text_input('Provide Landmark Below')
+additional = st.text_input('Optional Additional Input')
+
 submit = st.button("Submit", type="primary")
 
 # Use for demonstration
@@ -29,8 +31,12 @@ if user_input and submit:
     weather = response["weather"][0]["main"]
     country = response["sys"]["country"]
     description = response["weather"][0]["description"]
-
-    image_url = generate_image(city, weather, country, description)
-    st.image(image_url, caption=f"{weather} in {location},{country}")
+    
+    if additional:
+        prompt = f"{additional} at {user_input} in {location},{country} with the weather consisting of {weather} and {description}"
+    else:
+        prompt = f"{user_input} in {location},{country} with the weather consisting of {weather} and {description}"
+    image_url = generate_image(prompt)
+    st.image(image_url, caption=f"{weather} at {user_input} in {location},{country}")
 
 

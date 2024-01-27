@@ -5,12 +5,12 @@ import os
 import json
 STABLE_API = os.getenv("STABLE_API")
 
-def generate_image(location, weather, country, description):
+def generate_image(prompt):
   url = "https://stablediffusionapi.com/api/v3/text2img"
 
   payload = json.dumps({
     "key": STABLE_API,
-    "prompt": f"scenary or famous landmark in {location},{country} with the weather consisting of {weather} and {description}",
+    "prompt": prompt,
     "negative_prompt": None,
     "width": "512",
     "height": "512",
