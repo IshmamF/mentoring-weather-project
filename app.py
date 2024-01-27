@@ -32,6 +32,5 @@ if user_input and submit:
 
     image_url = generate_image(city, weather, country, description)
     st.image(image_url, caption=f"{weather} in {location},{country}")
-    st.map(latitude=location.latitude, longitude=location.longitude)
 
 
