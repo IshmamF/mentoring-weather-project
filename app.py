@@ -15,6 +15,11 @@ st.title("Weather Image")
 user_input = st.text_input('Provide Location Below')
 submit = st.button("Submit", type="primary")
 
+# Use for demonstration
+# CITY = 'London'
+# url = f"https://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={API_KEY}"
+
+
 if user_input and submit:
     location = geolocator.geocode(user_input)
     url = f"https://api.openweathermap.org/data/2.5/weather?lat={location.latitude}&lon={location.longitude}&appid={API_KEY}"
@@ -28,8 +33,5 @@ if user_input and submit:
     image_url = generate_image(city, weather, country, description)
     st.image(image_url, caption=f"{weather} in {location},{country}")
     st.map(latitude=location.latitude, longitude=location.longitude)
-
-    email = st.text_input('Feel free to email the results to your email!')
-    submission = st.button("Submit", type="primary")
 
 

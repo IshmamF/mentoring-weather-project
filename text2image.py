@@ -1,11 +1,15 @@
 import requests
+from dotenv import load_dotenv
+load_dotenv()
+import os
 import json
+STABLE_API = os.getenv("STABLE_API")
 
 def generate_image(location, weather, country, description):
   url = "https://stablediffusionapi.com/api/v3/text2img"
 
   payload = json.dumps({
-    "key": "I8CCXlMZmJWAPecrDlTUHp2EtuXgf4aL55LxtZJdo59aHk4o6qk8mzLj4t8S",
+    "key": STABLE_API,
     "prompt": f"scenary or famous landmark in {location},{country} with the weather consisting of {weather} and {description}",
     "negative_prompt": None,
     "width": "512",
